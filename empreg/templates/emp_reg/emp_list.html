@@ -1,0 +1,54 @@
+{% extends 'emp_reg/base.html' %}
+
+
+{% block content %}
+
+<div class="container my-5">
+    
+<p class="text-primary text-center">List of Employees</p>
+    <div class="col-md-10 offset-md-1 mt-5">
+<div class="p-5 mb-4 bg-body-tertiary rounded-3"> 
+    <div class="container-fluid py-5"> 
+        <h1 class="display-5 fw-bold">Employee Register</h1> 
+        <p class="col-md-8 fs-4"></p> 
+        
+<table class="table table-bordered">
+ <thead>
+    <tr>
+      <th scope="col">Sno</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Employee Code</th>
+      <th scope="col">Position</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {%  for employees in employee_list %}
+
+ <tr>
+      <th scope="row">{{employees.id}}</th>
+      <td>{{employees.fullname}}</td>
+      <td>{{employees.mobile}}</td>
+      <td>{{employees.emp_code}}</td>
+      <td>{{employees.position}}</td>
+      <td> <a href="{% url 'update' employees.id %}" class="btn btn-success"><i class="fa-solid fa-pen"></i> </a> <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+
+
+    {% endfor %}
+   
+    
+  </tbody>
+</table>
+
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+
