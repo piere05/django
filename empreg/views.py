@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .forms import EmployeeForm
+from .forms import *
 from .models import Employee
 # Create your views here.
 def emp_lits(request):
@@ -31,3 +31,12 @@ def emp_delete(request,id=0):
     employee.delete()
     return redirect('view') 
 
+
+
+def loginpage(request):
+    form=LoginForm()
+    return render(request,'index.html', {'form' :form})
+
+
+def register(request):
+    return render(request,'register.html')

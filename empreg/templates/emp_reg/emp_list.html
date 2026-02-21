@@ -4,70 +4,68 @@
 {% block content %}
 
 <div class="container my-5">
-    
-<p class="text-primary text-center">List of Employees</p>
-    <div class="col-md-10 offset-md-1 mt-5">
-<div class="p-5 mb-4 bg-body-tertiary rounded-3"> 
-    <div class="container-fluid py-5"> 
-      <div class="d-flex justify-content-between ">
-        <div>
-        <h1 class="display-5 fw-bold">Employee Register</h1>
-        </div> 
-        <div class="align-self-center">
-        <a href="{% url 'insert'  %}" class="btn btn-outline-success">Add New Employee</a>
+
+  <p class="text-primary text-center">List of Employees</p>
+  <div class="col-md-10 offset-md-1 mt-5">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <div class="d-flex justify-content-between ">
+          <div>
+            <h1 class="display-5 fw-bold">Employee Register</h1>
+          </div>
+          <div class="align-self-center">
+            <a href="{% url 'insert'  %}" class="btn btn-outline-success">Add New Employee</a>
+          </div>
         </div>
-      </div>
-        <p class="col-md-8 fs-4"></p> 
-        
-      
+        <p class="col-md-8 fs-4"></p>
+
+
         {% if employee_list %}
- 
-         
-<table class="table table-bordered">
- <thead>
-    <tr>
-      <th scope="col">Sno</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Employee Code</th>
-      <th scope="col">Position</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    {% for employees in employee_list %}
-
- <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{employees.fullname}}</td>
-      <td>{{employees.mobile}}</td>
-      <td>{{employees.emp_code}}</td>
-      <td>{{employees.position}}</td>
-      <td> <a href="{% url 'update' employees.id %}" class="btn btn-success"><i class="fa-solid fa-pen"></i> </a> 
-        <form action= "{% url 'delete'  employees.id %}" method="post">
-          {% csrf_token %}
-        <button  class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-        </form>
-      </td>
-    </tr>
 
 
-    {% endfor %}
-   
-    
-  </tbody>
-</table>
-{% else %}
-<div class="alert alert-warning">
-  No employees found.
-</div>
-{% endif %}
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Sno</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Employee Code</th>
+              <th scope="col">Position</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for employees in employee_list %}
+
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{employees.fullname}}</td>
+              <td>{{employees.mobile}}</td>
+              <td>{{employees.emp_code}}</td>
+              <td>{{employees.position}}</td>
+              <td> <a href="{% url 'update' employees.id %}" class="btn btn-success"><i class="fa-solid fa-pen"></i>
+                </a>
+                <form action="{% url 'delete'  employees.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </form>
+              </td>
+            </tr>
+
+
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-warning">
+          No employees found.
+        </div>
+        {% endif %}
+      </div>
+
     </div>
 
-</div>
-
-{% endblock content %}
-
-
-
+    {% endblock content %}

@@ -1,7 +1,7 @@
 
 from django import forms
 
-from .models import Employee
+from .models import *
 
 class EmployeeForm(forms.ModelForm):
 
@@ -21,3 +21,30 @@ class EmployeeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmployeeForm,self).__init__(*args, **kwargs)
         self.fields['position'].empty_label = "Select Position" # type: ignore
+
+
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model =user_reg
+        fields= ('username' , 'password')
+        labels= {
+            'username' : 'User Name',
+            'password' : 'Password',
+
+        }
+        
+
+
+
+class regForm(forms.ModelForm):
+    class Meta:
+        model =user_reg
+        fields= ('username' , 'password')
+        labels= {
+            'username' : 'User Name',
+            'password' : 'Password',
+
+        }
+ 
