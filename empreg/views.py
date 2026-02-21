@@ -1,5 +1,9 @@
 from django.shortcuts import redirect, render
 from .forms import *
+from django.contrib.auth.hashers import make_password
+from django.contrib import messages
+
+
 from .models import Employee
 # Create your views here.
 def emp_lits(request):
@@ -39,4 +43,21 @@ def loginpage(request):
 
 
 def register(request):
-    return render(request,'register.html')
+    if request.method =="GET":
+        form=regForm()
+        return render(request,'register.html', {'form' :form})
+    else:
+        form=regForm(request.POST)
+        if form.is_valid():
+                obj = form.save(commit=False)
+                obj.user_type = 1
+                obj.status = 1
+                obj.password = make_password(form.cleaned_data["password"])
+                obj.save()
+                messages.success(request,"User registered successfully")
+                return redirect('login')
+        else:
+            messages.error(request,"Registration failed. Please check your inputs.")
+            return redirect('register')
+
+    

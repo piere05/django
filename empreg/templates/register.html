@@ -1,0 +1,105 @@
+{% extends 'emp_reg/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .btn-login:hover {
+        opacity: 0.9;
+        color: white;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+
+    }
+
+    .create {
+        color: rgb(0, 56, 240);
+        text-decoration: none;
+    }
+</style>
+
+<div class="login-container">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <h2 class="login-title">User Registration</h2>
+
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+        {{ form.name|as_crispy_field }}
+
+        {{ form.username|as_crispy_field }}
+        {{ form.password|as_crispy_field }}
+
+        <input type="hidden" name="user_type" value="1" />
+        <button type="submit" class="btn btn-login">Register</button>
+    </form>
+    <div class="register-link">
+        <p class="mb-2 me-2">Already have an account?</p>
+        <a href="{% url 'login' %}" class="create">Login Now</a>
+    </div>
+</div>
+
+
+
+{% endblock content %}

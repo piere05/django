@@ -41,8 +41,9 @@ class LoginForm(forms.ModelForm):
 class regForm(forms.ModelForm):
     class Meta:
         model =user_reg
-        fields= ('username' , 'password')
+        fields= ('name','username' , 'password')
         labels= {
+             'name' : 'Name',
             'username' : 'User Name',
             'password' : 'Password',
 
