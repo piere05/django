@@ -25,15 +25,9 @@ class EmployeeForm(forms.ModelForm):
 
 
 
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model =user_reg
-        fields= ('username' , 'password')
-        labels= {
-            'username' : 'User Name',
-            'password' : 'Password',
-
-        }
+class LoginForm(forms.Form):
+    username = forms.CharField(label="User Name")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
         
 
 
@@ -45,7 +39,7 @@ class regForm(forms.ModelForm):
         labels= {
              'name' : 'Name',
             'username' : 'User Name',
-            'password' : 'Password',
+            'password' : 'Passwor   d',
 
         }
  

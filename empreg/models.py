@@ -29,3 +29,5 @@ class user_reg(models.Model):
 
     class Meta:
         db_table = "user_reg"
+
+

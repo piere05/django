@@ -10,5 +10,7 @@ urlpatterns = [
     path('emp/<int:id>/', views.emp_form,name="update"),
     path('emp/list/', views.emp_lits,name="view"),
     path('emp/delete/<int:id>/', views.emp_delete,name="delete"),
+    path('logout/', views.logout, name='logout'),
 
 ]
+
