@@ -17,11 +17,17 @@ def emp_form(request,id=0):
             form=EmployeeForm(instance=employee)
         return render(request,'emp_reg/emp_forms.html',{'form' :form})
     else:
-        form=EmployeeForm(request.POST)
+        if id==0:
+            form=EmployeeForm(request.POST)
+        else:
+             employee = Employee.objects.get(pk=id)
+             form=EmployeeForm(request.POST,instance=employee)
         if form.is_valid():
             form.save()
-        return redirect('list/')
+        return redirect('view')
 
-def emp_delete(request):
-    return render(request,'emp_reg/emp_forms.html')
+def emp_delete(request,id=0):
+    employee = Employee.objects.get(pk=id)
+    employee.delete()
+    return redirect('view') 
 

@@ -11,7 +11,14 @@
     <div class="col-md-10 offset-md-1 mt-5">
 <div class="p-5 mb-4 bg-body-tertiary rounded-3"> 
     <div class="container-fluid py-5"> 
-        <h1 class="display-5 fw-bold">Employee Register</h1> 
+     <div class="d-flex justify-content-between ">
+        <div>
+        <h1 class="display-5 fw-bold">Employee Register</h1>
+        </div> 
+        <div class="align-self-center">
+        <a href="{% url 'view'  %}" class="btn btn-outline-success">View Employee</a>
+        </div>
+    </div>
         <p class="col-md-8 fs-4"></p> 
         
         <form method="POST" autocomplete="off">

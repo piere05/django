@@ -9,9 +9,20 @@
     <div class="col-md-10 offset-md-1 mt-5">
 <div class="p-5 mb-4 bg-body-tertiary rounded-3"> 
     <div class="container-fluid py-5"> 
-        <h1 class="display-5 fw-bold">Employee Register</h1> 
+      <div class="d-flex justify-content-between ">
+        <div>
+        <h1 class="display-5 fw-bold">Employee Register</h1>
+        </div> 
+        <div class="align-self-center">
+        <a href="{% url 'insert'  %}" class="btn btn-outline-success">Add New Employee</a>
+        </div>
+      </div>
         <p class="col-md-8 fs-4"></p> 
         
+      
+        {% if employee_list %}
+ 
+         
 <table class="table table-bordered">
  <thead>
     <tr>
@@ -25,15 +36,20 @@
   </thead>
   <tbody>
 
-    {%  for employees in employee_list %}
+    {% for employees in employee_list %}
 
  <tr>
-      <th scope="row">{{employees.id}}</th>
+      <th scope="row">{{forloop.counter}}</th>
       <td>{{employees.fullname}}</td>
       <td>{{employees.mobile}}</td>
       <td>{{employees.emp_code}}</td>
       <td>{{employees.position}}</td>
-      <td> <a href="{% url 'update' employees.id %}" class="btn btn-success"><i class="fa-solid fa-pen"></i> </a> <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+      <td> <a href="{% url 'update' employees.id %}" class="btn btn-success"><i class="fa-solid fa-pen"></i> </a> 
+        <form action= "{% url 'delete'  employees.id %}" method="post">
+          {% csrf_token %}
+        <button  class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </form>
+      </td>
     </tr>
 
 
@@ -42,8 +58,11 @@
     
   </tbody>
 </table>
-
-
+{% else %}
+<div class="alert alert-warning">
+  No employees found.
+</div>
+{% endif %}
     </div>
 
 </div>
